@@ -1,0 +1,102 @@
+*{
+    padding: 0px;
+    margin: 0px;
+
+}
+
+.header{
+    background-color: rgb(22, 46, 38);
+    width: 100vw;
+    margin: 0px;
+    margin-left: -188px;
+    position: fixed;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    height: 80px;
+    color: white;
+   
+}
+
+.header h2{
+    margin-top: 15px;
+    font-weight: bolder;
+}
+
+.footer{
+    background-color: rgb(22, 46, 38);
+    width: 100vw;
+    position: fixed;
+    bottom: 1px;
+    height: 20px;
+    margin-left: -188px;
+    color: white;
+    font-weight: bold;
+
+
+ 
+}
+
+.footer p{
+    display: flex;
+    justify-content: center;
+}
+
+.section1, .section2{
+    display: flex;
+    margin: 10px;
+}
+
+.box{
+    width: 400px;
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+
+
+.title{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    color: rgb(61, 59, 59);
+}
+
+
+.icon{
+    display: flex;
+    justify-content: center;
+}
+
+.dis{
+    display: flex;
+    justify-content: center;
+    color: rgb(61, 59, 59);
+}
+
+.title,.icon,.dis{
+    padding: 5px;
+}
+
+.section1 a{
+    text-decoration: none;
+}
+
+.section2 a{
+    text-decoration: none;
+}
+
+.section1 a:hover .box{
+    background-color: black;
+    color: white;
+}
+
+.section2 a:hover .box{
+    background-color: black;
+    color: white;
+}
+
+
