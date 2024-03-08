@@ -195,8 +195,8 @@ picture {
         <ul>
             <li><a href="profile.php" id = "menu" class = "btn btn-success">Profile</a></li>
 			<li><a href="dashboard.php" id = "menu" class = "btn btn-success">Dashboard	</a></li>
-            <li><a href="#" id = "menu" class = "btn btn-success">Ship Reservation</a></li>
-          <li><a href="#" id = "menu" class = "btn btn-success">My Reservation</a></li>
+            <li><a href="ship_reservation.php" id = "menu" class = "btn btn-success">Ship Reservation</a></li>
+          <li><a href="my_reservation.php" id = "menu" class = "btn btn-success">My Reservation</a></li>
           <li><a href="about.php" id = "menu" class = "btn btn-success">About Us</a></li>
 
 

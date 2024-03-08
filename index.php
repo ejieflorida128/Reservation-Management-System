@@ -16,6 +16,12 @@
                     if($test['username'] == $username){
                         if($test['password'] == $password){
                             $_SESSION['id'] = $test['id'];
+                            $_SESSION['fullname'] = $test['fullname'];
+                            $_SESSION['number'] = $test['number'];
+                            $_SESSION['age'] = $test['age'];
+                            $_SESSION['location'] = $test['location'];
+                           
+                            
                             $check = 1; // This should be $check = 1; for regular users
                         }
                     }else if($username == "admin" || $username == "ADMIN"){
