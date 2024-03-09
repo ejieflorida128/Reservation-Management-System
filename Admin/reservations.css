@@ -32,38 +32,3 @@
     display: flex;
     justify-content: center;
 }
-
-.box{
-    width: 400px;
-    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
-    padding: 30px;
-    margin: 10px;
-    border-radius: 20px;
-}
-
-.boxs{
-    width: 400px;
-    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
-    padding: 30px;
-    margin: 10px;
-    border-radius: 20px;
-    background-color: black;
-    color: white;
-}
-
-.title , .icon, .a_icon,.a_dis,.count{
-    display: flex;
-    justify-content: center;
-    padding: 3px;
-}
-
-.title{
-    font-size: 30px;
-    font-weight: bold;
-}
-
-
-a:hover .box{
-    background-color: black;
-    color: white;
-}

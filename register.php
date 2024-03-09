@@ -12,7 +12,7 @@
 			$number = "0000-000-0000";
 
             $sql = "INSERT INTO user (img,fullname,username,password,gmail,location,number) VALUES ('$img','$fullname','$username','$password','$gmail','$location',$number)";
-            mysqli_query($conn,$sql);
+            mysqli_query($connforMyOnlineDb,$sql);
 
             echo "
                     <script>

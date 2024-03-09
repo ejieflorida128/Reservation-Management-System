@@ -1,5 +1,6 @@
 <?php
     include('../connection/conn.php');
+    session_start();
 
 
         if(isset($_POST['EditInformationOfTheSaidProfileAccount'])){
@@ -7,7 +8,7 @@
             $id = $_POST['EditInformationOfTheSaidProfileAccount'];
         
             $sql = "SELECT * FROM user WHERE id = '$id' ";
-            $result = mysqli_query($conn,$sql);
+            $result = mysqli_query($connforMyOnlineDb,$sql);
             $response = array();
         
             while($row = mysqli_fetch_assoc($result)){
@@ -38,7 +39,7 @@
             $sex = $_POST['sex'];
           
             $sql = "UPDATE user SET fullname = '$fullname', age = '$age', location = '$location', img = '$pic' , number = '$number',gmail = '$gmail',sex = '$sex' WHERE id = '$SelectedIdToBeEdited'";
-            mysqli_query($conn, $sql);
+            mysqli_query($connforMyOnlineDb, $sql);
           }
 
 
@@ -210,13 +211,15 @@
                 </thead>
                 <tbody>';
                 
+                $fullname = $_SESSION['fullname'];
     
-        $sql = "SELECT * FROM reservation ORDER BY id DESC";
+        $sql = "SELECT * FROM reservation WHERE fullname = '$fullname' ORDER BY id DESC";
         $result = mysqli_query($connforMyOnlineDb, $sql);
-        $number = 1;
+        $no = 0;
     
         if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
+          $no++;
             $id = $row['id'];
             $ShipName = $row['ShipName'];
             $fullname = $row['fullname'];
@@ -228,7 +231,7 @@
             
     
             $table .= '<tr>
-                <td scope="row" class="text-center align-middle">' . $number . '</td>
+                <td scope="row" class="text-center align-middle">' . $no . '</td>
                 <td scope="row" class="text-center align-middle">' . $ShipName . '</td>
                 <td class="text-center align-middle">' . $fullname . '</td>
                 <td class="text-center align-middle">' . $age . '</td>
@@ -251,66 +254,75 @@
         // Return the generated table markup as the response
         echo $table;
         }else{
-            $value = $_POST['value'];
-    
-            $table = '<div style="max-height: 400px; max-width: 1000px; overflow-y: auto;">'; // Added max-height and overflow-y properties
-            $table .= '<table class="table table-bordered table-hover" style = "box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); ">
-                    <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
-                    <tr> 
-                    <th scope="col" class="text-center align-middle">No.</th>
-                    <th scope="col" class="text-center align-middle">Ship Name</th>
-                    <th scope="col" class="text-center align-middle">Fullname</th>
-                    <th scope="col" class="text-center align-middle">Age</th>
-                    <th scope="col" class="text-center align-middle">Location</th>
-                    <th scope="col" class="text-center align-middle">Number</th>
-                    <th scope="col" class="text-center align-middle">Ticket Quantity</th>
-                    <th scope="col" class="text-center align-middle">Reservation Date</th>
-                    </tr>
-                    </thead>
-                    <tbody>';
-        
-            $sql = "SELECT * FROM reservation WHERE ShipName LIKE '%$value%' OR fullname LIKE '%$value%' OR location LIKE '%$value%' OR date LIKE '%$value%' OR age LIKE '%$value%' ORDER BY date DESC";
-            $result = mysqli_query($conn, $sql);
-            $number = 1;
-        
-            if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
+          
 
-              $id = $row['id'];
-              $ShipName = $row['ShipName'];
-              $fullname = $row['fullname'];
-              $age = $row['age'];
-              $location = $row['location'];
-              $number = $row['number'];
-              $quantity = $row['quantity'];
-              $date = $row['date'];
-              
-      
-              $table .= '<tr>
-                  <td scope="row" class="text-center align-middle">' . $number . '</td>
-                  <td scope="row" class="text-center align-middle">' . $ShipName . '</td>
-                  <td class="text-center align-middle">' . $fullname . '</td>
-                  <td class="text-center align-middle">' . $age . '</td>
-                  <td class="text-center align-middle">' . $location . '</td>
-                  <td class="text-center align-middle">' . $number . '</td>
-                  <td class="text-center align-middle">' . $quantity . '</td>
-                  <td class="text-center align-middle">' . $date . '</td>
-                  
-              </tr>';
-      
-              $number++;
-            }
-        }else{
-            $table .= '<tr><td colspan="8" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
-    
-            }
+            if(isset($_POST['searchValue'])){
+
+              $value = $_POST['searchValue'];
+              $table = '<div style="max-height: 400px; max-width: 1000px; overflow-y: auto;">'; // Added max-height and overflow-y properties
+              $table .= '<table class="table table-bordered table-hover" style = "box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); ">
+                      <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
+                      <tr> 
+                      <th scope="col" class="text-center align-middle">No.</th>
+                      <th scope="col" class="text-center align-middle">Ship Name</th>
+                      <th scope="col" class="text-center align-middle">Fullname</th>
+                      <th scope="col" class="text-center align-middle">Age</th>
+                      <th scope="col" class="text-center align-middle">Location</th>
+                      <th scope="col" class="text-center align-middle">Number</th>
+                      <th scope="col" class="text-center align-middle">Ticket Quantity</th>
+                      <th scope="col" class="text-center align-middle">Reservation Date</th>
+                      </tr>
+                      </thead>
+                      <tbody>';
+  
+              $fullname = $_SESSION['fullname'];
+          
+              $sql = "SELECT * FROM reservation WHERE fullname = '$fullname' AND (ShipName LIKE '%$value%' OR fullname LIKE '%$value%' OR location LIKE '%$value%' OR date LIKE '%$value%' OR age LIKE '%$value%') ORDER BY id DESC";
+
+              $result = mysqli_query($connforMyOnlineDb, $sql);
+              $no = 0;
+          
+              if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_assoc($result)) {
+                $no++;
+                $id = $row['id'];
+                $ShipName = $row['ShipName'];
+                $fullname = $row['fullname'];
+                $age = $row['age'];
+                $location = $row['location'];
+                $number = $row['number'];
+                $quantity = $row['quantity'];
+                $date = $row['date'];
+                
         
-            $table .= '</tbody></table></div>';
-            
-            // Return the generated table markup as the response
-            echo $table;
+                $table .= '<tr>
+                    <td scope="row" class="text-center align-middle">' . $no . '</td>
+                    <td scope="row" class="text-center align-middle">' . $ShipName . '</td>
+                    <td class="text-center align-middle">' . $fullname . '</td>
+                    <td class="text-center align-middle">' . $age . '</td>
+                    <td class="text-center align-middle">' . $location . '</td>
+                    <td class="text-center align-middle">' . $number . '</td>
+                    <td class="text-center align-middle">' . $quantity . '</td>
+                    <td class="text-center align-middle">' . $date . '</td>
+                    
+                </tr>';
+        
+                $number++;
+              }
+          }else{
+              $table .= '<tr><td colspan="8" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+      
+              }
+          
+              $table .= '</tbody></table></div>';
+              
+              // Return the generated table markup as the response
+              echo $table;
+      
+      
+            }
     
-    
+           
         }
     }
         

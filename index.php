@@ -7,7 +7,7 @@
                 $password = $_POST['password'];
 
                 $sql = "SELECT * FROM user";
-                $query = mysqli_query($conn,$sql);
+                $query = mysqli_query($connforMyOnlineDb,$sql);
 
                 $check = 0;
 
