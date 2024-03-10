@@ -174,11 +174,12 @@
               $fullname = $_POST['fullname'];
               $location = $_POST['location'];
               $age = $_POST['age'];
+              $UserId = $_POST['UserId'];
               $number = $_POST['number'];
               $quantity = $_POST['quantity'];
               $date = $_POST['date'];
 
-              $sql = "INSERT INTO reservation (ShipId,ShipName,fullname,location,age,number,quantity,date) VALUES ('$ShipId','$ShipName','$fullname','$location','$age','$number','$quantity','$date')";
+              $sql = "INSERT INTO reservation (UserId,ShipId,ShipName,fullname,location,age,number,quantity,date) VALUES ('$UserId','$ShipId','$ShipName','$fullname','$location','$age','$number','$quantity','$date')";
               mysqli_query($connforMyOnlineDb,$sql);
 
         }

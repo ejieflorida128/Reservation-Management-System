@@ -132,6 +132,7 @@
                     var location = '<?php echo $_SESSION['location'] ?>';
                     var age = '<?php echo $_SESSION['age'] ?>';
                     var number = '<?php echo $_SESSION['number'] ?>';
+                    var id = '<?php echo $_SESSION['id'] ?>';
                     var quantity = $('#quantity').val();
                     var date = $('#date').val();
 
@@ -141,6 +142,7 @@
                                 data: {
                                         ReserveShip:true,
                                         ShipId:ShipId,
+                                        UserId:id,
                                         ShipName:ShipName,
                                         fullname:fullname,
                                         location:location,

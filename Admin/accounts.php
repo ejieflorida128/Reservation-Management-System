@@ -79,6 +79,23 @@ include('sidebar.php');
                     });
                 }
 
+            function DeleteUser(id){
+                var id = id;
+
+                $.ajax({
+                        url: "ajax.php",
+                        type: 'post',
+                        data: {
+                            DeleteAccountandReservation: true,
+                            id:id          
+                        },
+                        success: function (data, status) {
+                            console.log(data); // Check the data in the console
+                            refreshIfClose();                       
+                        }
+                    });
+            }
+
 
 
                 </script>

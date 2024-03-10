@@ -28,7 +28,7 @@
                                     <img id ="profileImage" src = "<?php
                                              $id =  $_SESSION['id'];
                                              $sql = "SELECT * FROM user WHERE id = $id";
-                                             $query = mysqli_query($conn,$sql);
+                                             $query = mysqli_query($connforMyOnlineDb,$sql);
                                              
                                              while($test = mysqli_fetch_assoc($query)){
                                                  echo $test['img'];

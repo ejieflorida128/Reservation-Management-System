@@ -17,6 +17,7 @@ if(isset($_POST['searchUserAccount']) && $_POST['searchUserAccount'] == true){
                 <th scope="col" class="text-center align-middle">Gmail</th>
                 <th scope="col" class="text-center align-middle">Location</th>
                 <th scope="col" class="text-center align-middle">Number</th>
+                <th scope="col" class="text-center align-middle">Action</th>
               
             </tr>
             </thead>
@@ -51,6 +52,13 @@ if(isset($_POST['searchUserAccount']) && $_POST['searchUserAccount'] == true){
             <td class="text-center align-middle">' . $gmail . '</td>
             <td class="text-center align-middle">' . $location . '</td>
             <td class="text-center align-middle">' . $number . '</td>
+            <td>
+                <button onclick = "DeleteUser('.$id.')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                </svg>
+                </button>
+            </td>
        
     </td>
             
@@ -60,7 +68,7 @@ if(isset($_POST['searchUserAccount']) && $_POST['searchUserAccount'] == true){
     }
 }else{
     // If no data, display a row with "No Data Information"
-    $table .= '<tr><td colspan="8" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+    $table .= '<tr><td colspan="9" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
 }
 
     $table .= '</tbody></table></div>';
@@ -86,6 +94,7 @@ if(isset($_POST['searchUserAccount']) && $_POST['searchUserAccount'] == true){
                         <th scope="col" class="text-center align-middle">Gmail</th>
                         <th scope="col" class="text-center align-middle">Location</th>
                         <th scope="col" class="text-center align-middle">Number</th>
+                        <th scope="col" class="text-center align-middle">Action</th>
                        
                   </tr>
                   </thead>
@@ -122,13 +131,19 @@ if(isset($_POST['searchUserAccount']) && $_POST['searchUserAccount'] == true){
             <td class="text-center align-middle">' . $gmail . '</td>
             <td class="text-center align-middle">' . $location . '</td>
             <td class="text-center align-middle">' . $number . '</td>
-          
+            <td>
+            <button onclick = "DeleteUser('.$id.')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+            </svg>
+            </button>
+            </td>
                 
             </tr>';
     
           }
       }else{
-          $table .= '<tr><td colspan="8" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+          $table .= '<tr><td colspan="9" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
   
           }
       
@@ -329,6 +344,19 @@ if(isset($_POST['DeleteReservation']) && $_POST['DeleteReservation'] == true){
    
     $sql = "DELETE FROM reservation WHERE id = $id";
     mysqli_query($connforMyOnlineDb,$sql);
+}
+
+
+
+// delte for Account and uSER reservaion sa said account
+if(isset($_POST['DeleteAccountandReservation']) && $_POST['DeleteAccountandReservation'] == true){
+    $id = $_POST['id'];
+
+    $sql = "DELETE FROM user WHERE id = $id;
+            DELETE FROM reservation WHERE UserId = $id;
+    ";
+
+    mysqli_multi_query($connforMyOnlineDb,$sql);
 }
 
 
