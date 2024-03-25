@@ -60,7 +60,7 @@
                                 <div class="count">
                                 <h2>
                                             <?php
-                                                    $checkAccount = "SELECT * FROM reservation";
+                                                    $checkAccount = "SELECT * FROM reservation WHERE status = 'accepted'";
                                                     $check = mysqli_query($connforMyOnlineDb,$checkAccount);
 
                                                     $no = 0 ;

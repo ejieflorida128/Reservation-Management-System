@@ -184,7 +184,7 @@ if(isset($_POST['searchUserReservation']) && $_POST['searchUserReservation'] == 
             
           
 
-    $sql = "SELECT * FROM reservation ORDER BY id DESC";
+    $sql = "SELECT * FROM reservation WHERE status = 'accepted' ORDER BY id DESC";
     $result = mysqli_query($connforMyOnlineDb, $sql);
     $no = 0;
 
@@ -264,7 +264,7 @@ if(isset($_POST['searchUserReservation']) && $_POST['searchUserReservation'] == 
 
           $fullname = $_SESSION['fullname'];
       
-          $sql = "SELECT * FROM reservation WHERE ShipName LIKE '%$value%' OR fullname LIKE '%$value%' OR location LIKE '%$value%' OR age LIKE '%$value%' ORDER BY id DESC";
+          $sql = "SELECT * FROM reservation WHERE ShipName LIKE '%$value%' OR fullname LIKE '%$value%' OR location LIKE '%$value%' OR age LIKE '%$value%' AND status = 'accepted' ORDER BY id DESC";
 
           $result = mysqli_query($connforMyOnlineDb, $sql);
           $no = 0;

@@ -178,8 +178,9 @@
               $number = $_POST['number'];
               $quantity = $_POST['quantity'];
               $date = $_POST['date'];
+              $status = "pending";
 
-              $sql = "INSERT INTO reservation (UserId,ShipId,ShipName,fullname,location,age,number,quantity,date) VALUES ('$UserId','$ShipId','$ShipName','$fullname','$location','$age','$number','$quantity','$date')";
+              $sql = "INSERT INTO reservation (UserId,ShipId,ShipName,fullname,location,age,number,quantity,date,status) VALUES ('$UserId','$ShipId','$ShipName','$fullname','$location','$age','$number','$quantity','$date','$status')";
               mysqli_query($connforMyOnlineDb,$sql);
 
         }
@@ -214,7 +215,7 @@
                 
                 $fullname = $_SESSION['fullname'];
     
-        $sql = "SELECT * FROM reservation WHERE fullname = '$fullname' ORDER BY id DESC";
+        $sql = "SELECT * FROM reservation WHERE fullname = '$fullname' AND status = 'accepted' ORDER BY id DESC";
         $result = mysqli_query($connforMyOnlineDb, $sql);
         $no = 0;
     
@@ -278,7 +279,7 @@
   
               $fullname = $_SESSION['fullname'];
           
-              $sql = "SELECT * FROM reservation WHERE fullname = '$fullname' AND (ShipName LIKE '%$value%' OR fullname LIKE '%$value%' OR location LIKE '%$value%' OR date LIKE '%$value%' OR age LIKE '%$value%') ORDER BY id DESC";
+              $sql = "SELECT * FROM reservation WHERE fullname = '$fullname'  AND status = 'accepted' AND (ShipName LIKE '%$value%' OR fullname LIKE '%$value%' OR location LIKE '%$value%' OR date LIKE '%$value%' OR age LIKE '%$value%') ORDER BY id DESC";
 
               $result = mysqli_query($connforMyOnlineDb, $sql);
               $no = 0;

@@ -182,7 +182,7 @@ picture {
 }
 
 #logout{
-    margin-top: 300px;
+    margin-top: 210px;
 }
 
     </style>
@@ -195,6 +195,7 @@ picture {
         <ul>
             
 			<li><a href="dashboard.php" id = "menu" class = "btn btn-success">Dashboard	</a></li>
+			<li><a href="pending.php" id = "menu" class = "btn btn-success">Pending</a></li>
             <li><a href="reservations.php" id = "menu" class = "btn btn-success">User Reservation</a></li>
           <li><a href="accounts.php" id = "menu" class = "btn btn-success">User Accounts</a></li>
           
